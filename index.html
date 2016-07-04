@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!--<script src="angular.min.js"></script>-->
+    <script src="controller.js"></script>
+
+
+</head>
+
+<body data-ng-controller="movController" data-ng-init="fetch()">
+<div class="container">
+<div class="row">
+    <div class="col-sm-12"> <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--<a class="navbar-brand" href="#">Logo</a>-->
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#portfolio">PORTFOLIO</a></li>
+                    <li><a href="#pricing">PRICING</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </div>
+
+    <div class="col-sm-12">
+       <br><br><br>
+        bla-bla-bla
+        </div>
+    <div class="col-sm-4">
+        </div>
+    <div class="col-sm-8">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Movies</a></li>
+                <li><a href="#"> TV</a></li>
+    `           <li><a href="#">Rating</a></li>
+
+            </ul>
+
+    </div>
+    <div class="col-sm-4">
+
+
+    </div>
+    <div class="col-sm-8">
+        <br><br>
+        <div id="label">
+        <label class="radio-inline">
+            <input type="radio" data-ng-model="predicate" value="popularity" name="modes"
+                   data-ng-init="predicate='popularity'">
+            popularity
+        </label>
+        <label class="radio-inline">
+            <input type="radio" data-ng-model="predicate" value="vote_average" name="modes" >
+            rating
+        </label>
+        </div>
+        <div id="main">
+            <div class="mainblock" data-ng-repeat="f in data|orderBy:predicate"
+                 data-ng-class="{evenind:$even,oddind:$odd}">
+                <h2>{{f.original_title}}</h2>
+                <img src={{URLPoster+f.poster_path}}>
+                <div class="detail">
+
+
+                    <p>{{f.release_date}}</p>
+                    <h4>popularity: {{f.popularity}}</h4>
+                    <h4>rating: {{f.vote_average}}</h4>
+
+                </div>
+                <div >
+                    <p> {{f.overview}}</p>
+                </div>
+            </div>
+            <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a><br><br>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="content"></div>
+    <input id="#btn" type="submit" value="On">
+</div>
+<!--==Start block httpRequest tv_parametr==-->
+<script>
+    $('#btn').on('click', function(){
+        $.ajax('http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&' + ApiKey),{
+            success: function(response){
+                alert("!!!");
+                $('.content').html(response);
+            },
+            type: 'GET'
+        };
+    });
+
+
+</script>
+</body>
+
+</html>
