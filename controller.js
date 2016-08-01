@@ -5,7 +5,7 @@ var myApp = angular.module('myApp',[]);
 
 
 myApp.controller('movController',function($scope,$http) {
-    ApiKey = "api_key=dfe45e831646692a7be41b407f614d63";
+    ApiKey = "api_key=xxxxxxxxxxxxxxxxxxxxxxxxxxx";
     $scope.URLPoster = "http://image.tmdb.org/t/p/w185/";
 
 
